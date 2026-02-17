@@ -4,6 +4,14 @@
  */
 package com.mycompany.psp.proyectud3.view;
 
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+
 /**
  *
  * @author jsbje
@@ -17,7 +25,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        this.setTitle("Interfaz cliente");
+        this.applyStyles();
     }
 
     /**
@@ -31,26 +39,50 @@ public class MainFrame extends javax.swing.JFrame {
 
         backgroundPanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
+        userTextField = new javax.swing.JTextField();
+        logInButton = new javax.swing.JButton();
+        registerButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         backgroundPanel.setBackground(new java.awt.Color(255, 255, 255));
 
+        titleLabel.setBackground(new java.awt.Color(255, 255, 255));
         titleLabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        titleLabel.setForeground(java.awt.Color.blue);
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText("SERVER CLIENT");
+
+        userTextField.setText("");
+
+        logInButton.setText("Log In");
+
+        registerButton.setText("Register");
 
         javax.swing.GroupLayout backgroundPanelLayout = new javax.swing.GroupLayout(backgroundPanel);
         backgroundPanel.setLayout(backgroundPanelLayout);
         backgroundPanelLayout.setHorizontalGroup(
             backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(backgroundPanelLayout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(userTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+                    .addComponent(logInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(registerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         backgroundPanelLayout.setVerticalGroup(
             backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundPanelLayout.createSequentialGroup()
                 .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 260, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(userTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(logInButton)
+                .addGap(18, 18, 18)
+                .addComponent(registerButton)
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -67,10 +99,36 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
-
+    private void applyStyles(){
+        this.setTitle("Interfaz cliente");
+        this.userTextField.setBorder(new LineBorder(Color.BLUE,1,true));
+        
+        logInButton.setBackground(new Color(52, 152, 219));
+        logInButton.setForeground(Color.WHITE);
+        logInButton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        logInButton.setBorder(BorderFactory.createEmptyBorder(8, 15, 8, 15));
+        logInButton.setFocusPainted(false);
+        logInButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        
+        registerButton.setBackground(new Color(52, 152, 219));
+        registerButton.setForeground(Color.WHITE);
+        registerButton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        registerButton.setBorder(BorderFactory.createEmptyBorder(8, 15, 8, 15));
+        registerButton.setFocusPainted(false);
+        registerButton.setCursor(new Cursor(Cursor.HAND_CURSOR));        
+    }
+    
+    public void setLogInButtonActionListener(ActionListener al){
+        this.logInButton.addActionListener(al);
+    }
+    public void setRegisterButtonActionListener(ActionListener al){
+        this.registerButton.addActionListener(al);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
+    private javax.swing.JButton logInButton;
+    private javax.swing.JButton registerButton;
     private javax.swing.JLabel titleLabel;
+    private javax.swing.JTextField userTextField;
     // End of variables declaration//GEN-END:variables
 }
