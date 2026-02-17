@@ -4,6 +4,7 @@
  */
 package com.mycompany.psp.proyectud3.message;
 
+import com.mycompany.psp.proyectud3.model.Client;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -14,4 +15,7 @@ import java.rmi.RemoteException;
 public interface Message extends Remote{
     void recieveMessage(String form, String message) throws RemoteException;
     String sendMessage (String form, String message) throws RemoteException;
-}
+    void registerClient(Client client) throws RemoteException;
+    boolean clientExist(String name) throws RemoteException;
+    Client getClient(String name) throws RemoteException;
+} 

@@ -6,6 +6,11 @@ package com.mycompany.psp.proyectud3.controller;
 
 import com.mycompany.psp.proyectud3.message.Message;
 import com.mycompany.psp.proyectud3.view.MainFrame;
+import com.mycompany.psp.proyectud3.view.UserDialog;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +23,47 @@ public class FrontController {
     public FrontController(MainFrame view, Message server) {
         this.view = view;
         this.server = server;
+        this.view.setLogInButtonActionListener(this.getLogInButtonActionListener());
+        this.view.setRegisterButtonActionListener(this.getRegisterActionListener());
     }
      
+    
+    private ActionListener getLogInButtonActionListener(){
+        ActionListener al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if(server.clientExist(view.getUserTextField().trim())){
+                        UserDialog ud = new UserDialog(view,true);
+                        UserController uc = new UserController(ud, server.getClient(view.getUserTextField().trim()), server);
+                        ud.setVisible(true);
+                    }else{
+                        JOptionPane.showMessageDialog(view, "Error: el usuario no existe", "Error log in", JOptionPane.ERROR_MESSAGE);
+                    }} catch (RemoteException ex) {
+                    JOptionPane.showMessageDialog(view, "Error: ha ocurrido un error en el servidor", "Error en el servidor", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        };
+        return al;
+    }
+    
+    private ActionListener getRegisterActionListener(){
+        ActionListener al = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(!view.getUserTextField().trim().isEmpty()){
+                   UserDialog ud = new UserDialog(view,true);
+                    try {
+                        UserController uc = new UserController(ud, server.getClient(view.getUserTextField().trim()), server);
+                    } catch (RemoteException ex) {
+                        JOptionPane.showMessageDialog(view, "Error: ha ocurrido un error en el servidor", "Error en el servidor", JOptionPane.ERROR_MESSAGE);
+                    }
+                   ud.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(view, "Error: no hay nada", "Error register", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        };
+        return al;
+    }
 }

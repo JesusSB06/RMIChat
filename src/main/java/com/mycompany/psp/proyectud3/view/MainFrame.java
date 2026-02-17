@@ -124,6 +124,9 @@ public class MainFrame extends javax.swing.JFrame {
     public void setRegisterButtonActionListener(ActionListener al){
         this.registerButton.addActionListener(al);
     }
+    public String getUserTextField(){
+        return this.userTextField.getText();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JButton logInButton;
