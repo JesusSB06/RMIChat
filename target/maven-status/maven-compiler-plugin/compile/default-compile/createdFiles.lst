@@ -1,5 +1,4 @@
-com\mycompany\psp\proyectud3\client.class
-com\mycompany\psp\proyectud3\PSPProyectUD3.class
 com\mycompany\psp\proyectud3\Server.class
-com\mycompany\psp\proyectud3\hello\Hello.class
-com\mycompany\psp\proyectud3\hello\HelloImpl.class
+com\mycompany\psp\proyectud3\Client.class
+com\mycompany\psp\proyectud3\message\Message.class
+com\mycompany\psp\proyectud3\message\MessageImpl.class

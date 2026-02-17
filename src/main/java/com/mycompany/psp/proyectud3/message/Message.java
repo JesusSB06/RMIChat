@@ -13,4 +13,5 @@ import java.rmi.RemoteException;
  */
 public interface Message extends Remote{
     void recieveMessage(String form, String message) throws RemoteException;
+    String sendMessage (String form, String message) throws RemoteException;
 }

@@ -18,8 +18,8 @@ public class Client {
     public static void main(String[] args) {
         try {
             Registry registry = LocateRegistry.getRegistry();
-            Message server = (Message) registry.lookup("Hello");
-            server.recieveMessage("Jesus", "Hola, buenos tardes");
+            Message server = (Message) registry.lookup("Chat");
+            
         } catch (RemoteException ex) {
             System.getLogger(Client.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         } catch (NotBoundException ex) {

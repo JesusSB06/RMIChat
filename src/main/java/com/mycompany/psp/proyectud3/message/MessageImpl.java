@@ -17,7 +17,14 @@ public class MessageImpl extends UnicastRemoteObject implements Message{
     
     @Override
     public void recieveMessage(String form, String message) throws RemoteException{
-        
+        System.out.println(form + " ha enviado: " + message);   
+    }
+
+    @Override
+    public String sendMessage(String form, String message) throws RemoteException {
+       
+        return null;
+       
     }
     
 }
