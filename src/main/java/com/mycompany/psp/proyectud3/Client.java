@@ -1,0 +1,30 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.mycompany.psp.proyectud3;
+
+import com.mycompany.psp.proyectud3.message.Message;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+
+/**
+ *
+ * @author jsbje
+ */
+public class Client {
+    public static void main(String[] args) {
+        try {
+            Registry registry = LocateRegistry.getRegistry();
+            Message server = (Message) registry.lookup("Hello");
+            server.recieveMessage("Jesus", "Hola, buenos tardes");
+        } catch (RemoteException ex) {
+            System.getLogger(Client.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        } catch (NotBoundException ex) {
+            System.getLogger(Client.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
+    }
+   
+}
