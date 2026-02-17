@@ -4,6 +4,11 @@
  */
 package com.mycompany.psp.proyectud3.view;
 
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import javax.swing.BorderFactory;
+
 /**
  *
  * @author jsbje
@@ -18,6 +23,7 @@ public class UserDialog extends javax.swing.JDialog {
     public UserDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        applyStyles();
     }
 
     /**
@@ -32,9 +38,9 @@ public class UserDialog extends javax.swing.JDialog {
         backgroundPanel = new javax.swing.JPanel();
         messageTextField = new javax.swing.JTextField();
         sendButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        messageScrollPane = new javax.swing.JScrollPane();
         messageTable = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        usersScrollPane = new javax.swing.JScrollPane();
         usersTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -53,7 +59,7 @@ public class UserDialog extends javax.swing.JDialog {
                 "Recieved message", "My message"
             }
         ));
-        jScrollPane1.setViewportView(messageTable);
+        messageScrollPane.setViewportView(messageTable);
 
         usersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,7 +69,7 @@ public class UserDialog extends javax.swing.JDialog {
                 "Users"
             }
         ));
-        jScrollPane2.setViewportView(usersTable);
+        usersScrollPane.setViewportView(usersTable);
 
         javax.swing.GroupLayout backgroundPanelLayout = new javax.swing.GroupLayout(backgroundPanel);
         backgroundPanel.setLayout(backgroundPanelLayout);
@@ -73,9 +79,9 @@ public class UserDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(messageScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+                        .addComponent(usersScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
                         .addComponent(messageTextField)
                         .addGap(18, 18, 18)
@@ -87,8 +93,8 @@ public class UserDialog extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(messageScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usersScrollPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(messageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -110,15 +116,22 @@ public class UserDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+    private void applyStyles(){
+        sendButton.setBackground(new Color(52, 152, 219));
+        sendButton.setForeground(Color.WHITE);
+        sendButton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        sendButton.setBorder(BorderFactory.createEmptyBorder(8, 15, 8, 15));
+        sendButton.setFocusPainted(false);
+        sendButton.setCursor(new Cursor(Cursor.HAND_CURSOR));  
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane messageScrollPane;
     private javax.swing.JTable messageTable;
     private javax.swing.JTextField messageTextField;
     private javax.swing.JButton sendButton;
+    private javax.swing.JScrollPane usersScrollPane;
     private javax.swing.JTable usersTable;
     // End of variables declaration//GEN-END:variables
 }

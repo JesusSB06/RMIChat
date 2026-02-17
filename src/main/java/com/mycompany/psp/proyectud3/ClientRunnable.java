@@ -16,7 +16,7 @@ import java.rmi.registry.Registry;
  *
  * @author jsbje
  */
-public class Client {
+public class ClientRunnable {
     public static void main(String[] args) {
         try {
             Registry registry = LocateRegistry.getRegistry();
@@ -27,9 +27,9 @@ public class Client {
             view.setVisible(true);
             
         } catch (RemoteException ex) {
-            System.getLogger(Client.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            System.getLogger(ClientRunnable.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         } catch (NotBoundException ex) {
-            System.getLogger(Client.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            System.getLogger(ClientRunnable.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
     }
    
