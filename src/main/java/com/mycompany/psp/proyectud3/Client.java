@@ -4,7 +4,9 @@
  */
 package com.mycompany.psp.proyectud3;
 
+import com.mycompany.psp.proyectud3.controller.FrontController;
 import com.mycompany.psp.proyectud3.message.Message;
+import com.mycompany.psp.proyectud3.view.MainFrame;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -19,6 +21,10 @@ public class Client {
         try {
             Registry registry = LocateRegistry.getRegistry();
             Message server = (Message) registry.lookup("Chat");
+            
+            MainFrame view = new MainFrame();
+            FrontController fc = new FrontController(view, server);
+            view.setVisible(true);
             
         } catch (RemoteException ex) {
             System.getLogger(Client.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);

@@ -1,4 +1,6 @@
+com\mycompany\psp\proyectud3\view\MainFrame.class
 com\mycompany\psp\proyectud3\Server.class
+com\mycompany\psp\proyectud3\controller\FrontController.class
 com\mycompany\psp\proyectud3\Client.class
 com\mycompany\psp\proyectud3\message\Message.class
 com\mycompany\psp\proyectud3\message\MessageImpl.class
