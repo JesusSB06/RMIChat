@@ -8,7 +8,11 @@ import com.mycompany.psp.proyectud3.model.Client;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Vector;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,10 +31,7 @@ public class MessageImpl extends UnicastRemoteObject implements Message {
         System.out.println("Cliente registrado: " + client.getName());
     }
 
-    @Override
-    public void recieveMessage(String from, String message) throws RemoteException {
-        System.out.println(from + " ha enviado: " + message);
-    }
+
 
     @Override
     public String sendMessage(String from, String message) throws RemoteException {
@@ -42,7 +43,7 @@ public class MessageImpl extends UnicastRemoteObject implements Message {
         for (Map.Entry<String, Client> entry : clients.entrySet()) {
             Client recipient = entry.getValue();
             if (!recipient.getName().equals(from)) {
-                recipient.addMessage(sender, message);
+                recipient.addMessage(sender.getName(), message);
             }
         }
 
@@ -53,11 +54,10 @@ public class MessageImpl extends UnicastRemoteObject implements Message {
     public HashMap<String, Client> getClients() {
         return clients;
     }
-    
-
 
     @Override
     public Client getClient(String name) throws RemoteException {
+
         return clients.get(name);
     }
 
@@ -69,5 +69,53 @@ public class MessageImpl extends UnicastRemoteObject implements Message {
             return false;
         }
     }
+
+    @Override
+    public boolean AddClient(String name) throws RemoteException {
+        if (!clientExist(name)) {
+            clients.put(name, new Client(name));
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    @Override
+    public void updateMessageTable(JTable table, Client client) throws RemoteException {
+
+        for (Map.Entry<String, List<String>> map : client.getMessages().entrySet()) {
+            if (map.getKey().equals(client.getName())) {
+                if (!map.getValue().isEmpty()) {
+                    for (String st : map.getValue()) {
+                        Vector row = new Vector();
+                        row.add(st);
+                        row.add("");
+                        DefaultTableModel model = (DefaultTableModel) table.getModel();
+                        model.addRow(row);
+                    }
+                }
+
+            }
+        }
+    }
+
+    @Override
+    public void updateUserTable(JTable table) throws RemoteException {
+        System.out.println("aaaaa");
+        if (!clients.isEmpty()) {
+            System.out.println("aaaaa");
+            for (Map.Entry<String, Client> map : clients.entrySet()) {
+                
+                Vector row = new Vector();
+                row.add(map.getKey());
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                model.addRow(row);
+            }
+        }
+
+    }
+
+
 
 }
