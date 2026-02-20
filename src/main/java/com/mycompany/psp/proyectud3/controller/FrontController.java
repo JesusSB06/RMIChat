@@ -4,14 +4,14 @@
  */
 package com.mycompany.psp.proyectud3.controller;
 
-import com.mycompany.psp.proyectud3.message.Message;
-import com.mycompany.psp.proyectud3.model.Client;
+import com.mycompany.psp.proyectud3.client.Client;
 import com.mycompany.psp.proyectud3.view.MainFrame;
 import com.mycompany.psp.proyectud3.view.UserDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 import javax.swing.JOptionPane;
+import com.mycompany.psp.proyectud3.client.IClient;
 
 /**
  *
@@ -19,9 +19,9 @@ import javax.swing.JOptionPane;
  */
 public class FrontController {
      private MainFrame view;
-     private Message server;
+     private IClient server;
 
-    public FrontController(MainFrame view, Message server) {
+    public FrontController(MainFrame view, IClient server) {
         this.view = view;
         this.server = server;
         this.view.setLogInButtonActionListener(this.getLogInButtonActionListener());

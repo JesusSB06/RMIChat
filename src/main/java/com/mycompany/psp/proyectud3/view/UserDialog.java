@@ -7,8 +7,12 @@ package com.mycompany.psp.proyectud3.view;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -117,13 +121,13 @@ public class UserDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void applyStyles(){
+    private void applyStyles() {
         sendButton.setBackground(new Color(52, 152, 219));
         sendButton.setForeground(Color.WHITE);
         sendButton.setFont(new Font("Segoe UI", Font.BOLD, 12));
         sendButton.setBorder(BorderFactory.createEmptyBorder(8, 15, 8, 15));
         sendButton.setFocusPainted(false);
-        sendButton.setCursor(new Cursor(Cursor.HAND_CURSOR));  
+        sendButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
     public JTable getMessageTable() {
@@ -134,6 +138,38 @@ public class UserDialog extends javax.swing.JDialog {
         return usersTable;
     }
 
+    public void clearTable(JTable table) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+        table.clearSelection();
+        table.revalidate();
+        table.repaint();
+    }
+
+    public void addRowTable(Vector row, JTable table) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.addRow(row);
+    }
+
+    public void setSendButtonActionListener(ActionListener al) {
+        this.sendButton.addActionListener(al);
+    }
+    
+    public void setUserTableListSelectionListener (ListSelectionListener  lsl){
+        this.usersTable.getSelectionModel().addListSelectionListener(lsl);
+    }
+    
+    public int getSelectedRow(JTable table){
+        return table.getSelectedRow();
+    }
+
+    public String getMessageText() {
+        return this.messageTextField.getText();
+    }
+    
+    public void setMessageText(String value){
+        this.messageTextField.setText(value);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JScrollPane messageScrollPane;

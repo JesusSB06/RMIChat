@@ -1,9 +1,9 @@
 package com.mycompany.psp.proyectud3;
 
-import com.mycompany.psp.proyectud3.message.Message;
-import com.mycompany.psp.proyectud3.message.MessageImpl;
+import com.mycompany.psp.proyectud3.client.ClientImpl;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import com.mycompany.psp.proyectud3.client.IClient;
 
 /**
  *
@@ -18,7 +18,7 @@ public class Server {
         try {
 
             Registry registry = LocateRegistry.createRegistry(port);
-            Message service = new MessageImpl();
+            IClient service = new ClientImpl();
 
             registry.rebind(bindName, service);
 

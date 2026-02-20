@@ -5,13 +5,14 @@
 package com.mycompany.psp.proyectud3;
 
 import com.mycompany.psp.proyectud3.controller.FrontController;
-import com.mycompany.psp.proyectud3.message.Message;
+import com.mycompany.psp.proyectud3.client.IClient;
 
 import com.mycompany.psp.proyectud3.view.MainFrame;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import com.mycompany.psp.proyectud3.client.Client;
 
 /**
  *
@@ -21,7 +22,7 @@ public class ClientRunnable {
     public static void main(String[] args) {
         try {
             Registry registry = LocateRegistry.getRegistry();
-            Message server = (Message) registry.lookup("Chat");
+            IClient server = (IClient) registry.lookup("Chat");
             
             MainFrame view = new MainFrame();
 
