@@ -19,21 +19,21 @@ import com.mycompany.psp.proyectud3.client.Client;
  * @author jsbje
  */
 public class ClientRunnable {
+
     public static void main(String[] args) {
         try {
             Registry registry = LocateRegistry.getRegistry();
             IClient server = (IClient) registry.lookup("Chat");
-            
-            MainFrame view = new MainFrame();
 
+            MainFrame view = new MainFrame();
             FrontController fc = new FrontController(view, server);
             view.setVisible(true);
-            
+
         } catch (RemoteException ex) {
-            System.getLogger(ClientRunnable.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            System.out.println("No se ha encontrado ningun registro");
         } catch (NotBoundException ex) {
             System.getLogger(ClientRunnable.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }
     }
-   
+
 }

@@ -15,7 +15,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Map;
 import java.util.Vector;
 import javax.swing.SwingUtilities;
-import com.mycompany.psp.proyectud3.ClientCallback;
+import com.mycompany.psp.proyectud3.client.ClientCallback;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -84,15 +84,20 @@ public class UserController extends UnicastRemoteObject implements ClientCallbac
             public void actionPerformed(ActionEvent e) {
                 String message = view.getMessageText().trim();
                 if (!message.isEmpty()) {
-                    try {
-                        server.sendMessage(client.getName(), message);
-                        Vector row = new Vector();
-                        row.add("");
-                        row.add(message);
-                        view.addRowTable(row, view.getMessageTable());
-                    } catch (RemoteException ex) {
-                        JOptionPane.showMessageDialog(view, "Error al enviar el mensaje", "Error de conexión", JOptionPane.ERROR_MESSAGE);
+                    if (view.getSelectedRow(view.getUsersTable()) != -1) {
+                        try {
+                            server.sendMessage(client.getName(), message);
+                            Vector row = new Vector();
+                            row.add("");
+                            row.add(message);
+                            view.addRowTable(row, view.getMessageTable());
+                        } catch (RemoteException ex) {
+                            JOptionPane.showMessageDialog(view, "Error al enviar el mensaje", "Error de conexión", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(view, "Error al enviar el mensaje, no existe usuario", "Error de conexión", JOptionPane.ERROR_MESSAGE);
                     }
+
                 }
             }
         };

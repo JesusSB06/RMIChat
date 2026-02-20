@@ -4,6 +4,7 @@ import com.mycompany.psp.proyectud3.client.ClientImpl;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import com.mycompany.psp.proyectud3.client.IClient;
+import java.rmi.RemoteException;
 
 /**
  *
@@ -14,21 +15,21 @@ public class Server {
     public static void main(String[] args) {
         int port = 1099;
         String bindName = "Chat";
-
         try {
+            Registry registry;
+            try {
+                registry = LocateRegistry.getRegistry(port);
+                System.out.println("Se ha encontrado el registry en el puerto " + port);
+                IClient service = new ClientImpl();
+                registry.rebind(bindName, service);
+            } catch (RemoteException e) {
+                System.out.println("Registry no encontrado");
+            }
 
-            Registry registry = LocateRegistry.createRegistry(port);
-            IClient service = new ClientImpl();
-
-            registry.rebind(bindName, service);
-
-            System.out.println("RMI Server listo.");
-            System.out.println("Registry en puerto: " + port);
             System.out.println("Servicio publicado como: " + bindName);
 
         } catch (Exception e) {
-            System.err.println("Error arrancando el servidor RMI: " + e.getMessage());
-            e.printStackTrace();
+            System.err.println("Error en el servidor: " + e.getMessage());
         }
     }
 }

@@ -6,6 +6,7 @@ package com.mycompany.psp.proyectud3.client;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +14,6 @@ import java.util.Map;
 import java.util.Vector;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import com.mycompany.psp.proyectud3.ClientCallback;
 
 /**
  *
@@ -74,20 +74,19 @@ public class ClientImpl extends UnicastRemoteObject implements IClient {
     }
 
     @Override
-public String sendMessage(String from, String message) throws RemoteException {
+public void sendMessage(String from, String message) throws RemoteException {
         Client sender = clients.get(from);
         
         if (sender != null) {
             for (Map.Entry<String, ClientCallback> entry : callbacks.entrySet()) {
                 if (!entry.getKey().equals(from)) {
                     try {
-                        entry.getValue().receiveMessage(sender, message);
+                        entry.getValue().receiveMessage(sender, LocalDate.now() + " " + message);
                     } catch (RemoteException e) {
                         System.out.println("Error enviando mensaje a cliente " + entry.getKey() + ": " + e.getMessage());
                     }
                 }
             }
         }
-        return "Mensaje enviado";
     }
 }

@@ -11,14 +11,13 @@ import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import com.mycompany.psp.proyectud3.ClientCallback;
 
 /**
  *
  * @author jsbje
  */
 public interface IClient extends Remote {
-    String sendMessage(String from, String message) throws RemoteException;
+    void sendMessage(String from, String message) throws RemoteException;
     void registerClient(Client client, ClientCallback callback) throws RemoteException; // cambiamos
     boolean clientExist(String name) throws RemoteException;
     Client getClient(String name) throws RemoteException;
