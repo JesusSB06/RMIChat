@@ -20,5 +20,5 @@ cual contendrá toda la lógica del programa y a tráves de **RMI**; y el segund
 ```
 RMIChat
 └──src/main/java/com/mycompany/psp/proyectud3
-    ├──
+    ├── 
     │
